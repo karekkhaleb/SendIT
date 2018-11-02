@@ -4,7 +4,6 @@ const editOrderBackground = document.querySelectorAll('.edit-order-bg')[0];
 
 openEditOrderBtn.addEventListener('click', (e) => {
     editOrderBackground.style.display = 'block';
-    // window.location.href = '/edit-order.html';
 });
 closeEditOrderBtn.addEventListener('click', () => {
     editOrderBackground.style.display = 'none';
