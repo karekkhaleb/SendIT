@@ -1,0 +1,37 @@
+{
+  "name": "sendit-api",
+  "version": "1.0.0",
+  "description": "this is just the api for the rest of the project",
+  "main": "server.js",
+  "scripts": {
+    "test": "jasmine",
+    "build": "webpack -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karekkhaleb/SendIT.git"
+  },
+  "author": "Caleb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karekkhaleb/SendIT/issues"
+  },
+  "homepage": "https://github.com/karekkhaleb/SendIT#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jasmine": "^2.10.1",
+    "jasmine": "^3.3.0",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.7",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
