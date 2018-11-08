@@ -1,6 +1,5 @@
 import express from 'express';
-import parcelsRoutesV1 from './routes/parcelsRoutesV1';
-import { myParcels } from './routes/parcelsRoutesV1';
+import parcelsRoutesV1, { myParcels } from './routes/parcelsRoutesV1';
 
 const port = process.env.port || 3000;
 const app = express();
