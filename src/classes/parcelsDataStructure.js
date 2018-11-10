@@ -4,7 +4,7 @@ class Parcel {
     this.userId = payload.userId;
     this.weight = payload.weight;
     this.pickupLocation = payload.pickupLocation;
-    this.currentLocation = payload.currentLocation;
+    this.currentLocation = payload.pickupLocation;
     this.destination = payload.destination;
     this.description = payload.description;
     this.delivered = payload.delivered;
@@ -17,7 +17,6 @@ class ParcelsCollection extends Array {
     userId,
     weight,
     pickupLocation,
-    currentLocation,
     destination,
     description,
     price,
@@ -33,7 +32,6 @@ class ParcelsCollection extends Array {
       userId,
       weight,
       pickupLocation,
-      currentLocation,
       destination,
       description,
       price,

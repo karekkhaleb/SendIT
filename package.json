@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./api/server.js",
+    "dev": "nodemon ./api/server.js",
     "build": "webpack -w",
     "testw": "nodemon --exec jasmine",
     "test": "babel-node node_modules/.bin/jasmine"

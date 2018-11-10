@@ -23,7 +23,6 @@ Router.post('/', (req, res) => {
     req.body.userId,
     req.body.weight,
     req.body.pickupLocation,
-    req.body.currentLocation,
     req.body.destination,
     req.body.description,
     price,

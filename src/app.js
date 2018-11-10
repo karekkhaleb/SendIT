@@ -10,10 +10,38 @@ app.use(express.json());
 app.use('/api/v1/parcels/', parcelsRoutesV1);
 
 app.get('/', (req, res) => {
-  res.send(`
-  <h2>Home Page</h2>
-  <h3>please use the url in this fashion(/api/v1/parcels/...)</h3>
-  `);
+  res.json({
+    message: 'Welcome to my API, this is the information about my api',
+    apiV1Routes: {
+      gettingAllParcels: {
+        url: '/api/v1/parcels',
+        method: 'GET',
+      },
+      gettingASingleParcel: {
+        url: '/api/v1/parcels/<parcelId>',
+        method: 'GET',
+      },
+      gettingParcelsByUserId: {
+        url: '/api/v1/users/<userId>/parcels',
+        method: 'GET',
+      },
+      creatingAParcel: {
+        url: '/api/v1/parcels',
+        method: 'POST',
+        objectFormat: {
+          userId: 'The id of the user creating the parcel',
+          weight: 'The weight of the parcel',
+          pickupLocation: 'The location where the parcel should be picked up',
+          destination: 'The parcel\'s destination',
+          description: 'Some info about the parcel',
+        },
+      },
+      cancelParcel: {
+        url: '/api/v1/parcels/<parcelId>/cancel',
+        method: 'PUT',
+      },
+    },
+  });
 });
 
 app.get('/api/v1/users/:userId/parcels', (req, res) => {
