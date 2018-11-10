@@ -4,10 +4,10 @@
   "description": "this is just the api for the rest of the project",
   "main": "server.js",
   "scripts": {
-    "test": "jasmine",
+    "start": "node ./api/server.js",
     "build": "webpack -w",
     "testw": "nodemon --exec jasmine",
-    "test6": "babel-node node_modules/.bin/jasmine"
+    "test": "babel-node node_modules/.bin/jasmine"
   },
   "repository": {
     "type": "git",
