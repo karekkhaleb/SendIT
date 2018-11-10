@@ -4,7 +4,7 @@
   "description": "this is just the api for the rest of the project",
   "main": "server.js",
   "scripts": {
-    "start": "node ./api/server.js",
+    "start": "cross-env NODE_ENV=production node ./api/server.js",
     "build": "webpack -w",
     "testw": "nodemon --exec jasmine",
     "test": "babel-node node_modules/.bin/jasmine"
