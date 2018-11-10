@@ -4,7 +4,7 @@ import parcelsRoutesV1, { myParcels } from './routes/parcelsRoutesV1';
 const port = process.env.port || 3000;
 const app = express();
 
-// middlewares
+// middleware
 app.use(express.json());
 
 app.use('/api/v1/parcels/', parcelsRoutesV1);
@@ -12,7 +12,7 @@ app.use('/api/v1/parcels/', parcelsRoutesV1);
 app.get('/', (req, res) => {
   res.send(`
   <h2>Home Page</h2>
-  <h3>please use the url in this fashon(/api/v1/parcels/...)</h3>
+  <h3>please use the url in this fashion(/api/v1/parcels/...)</h3>
   `);
 });
 

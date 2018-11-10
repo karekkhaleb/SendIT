@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "jasmine",
-    "build": "webpack -w"
+    "build": "webpack -w",
+    "testw": "nodemon --exec jasmine",
+    "test6": "babel-node node_modules/.bin/jasmine"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
   "homepage": "https://github.com/karekkhaleb/SendIT#readme",
   "devDependencies": {
     "@babel/core": "^7.1.5",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^7.1.5",

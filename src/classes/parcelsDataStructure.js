@@ -40,11 +40,21 @@ class ParcelsCollection extends Array {
       delivered: false,
     });
 
-    if (this.push(newParcel)) {
-      return newParcel;
+    if (
+      !newParcel.userId
+      || !newParcel.pickupLocation
+      || !newParcel.parcelId
+      || !newParcel.weight
+      || !newParcel.currentLocation
+      || !newParcel.description
+      || !newParcel.destination
+      || !newParcel.price
+    ) {
+      return null;
     }
-    return null;
-  }
+    this.push(newParcel);
+    return { ...newParcel };
+  };
 
   getParcelById = (parcelId) => {
     // eslint-disable-next-line no-restricted-syntax
@@ -52,12 +62,12 @@ class ParcelsCollection extends Array {
       if (value.parcelId === parcelId) {
         return {
           index,
-          parcel: value,
+          parcel: { ...value },
         };
       }
     }
     return null;
-  }
+  };
 
   getParcelsByUserId = (userId) => {
     const parcelsForOneUser = [];
@@ -69,7 +79,7 @@ class ParcelsCollection extends Array {
 
     if (parcelsForOneUser.length) return parcelsForOneUser;
     return null;
-  }
+  };
 
   editParcelDestinationById = (parcelId, destination) => {
     const parcelObj = this.getParcelById(parcelId);
@@ -90,7 +100,7 @@ class ParcelsCollection extends Array {
       this.push(parcel);
     });
     return editedParcel;
-  }
+  };
 
   editParcelCurrentLocationById = (parcelId, currentLocation) => {
     const parcelObj = this.getParcelById(parcelId);
@@ -112,7 +122,7 @@ class ParcelsCollection extends Array {
     });
 
     return editedParcel;
-  }
+  };
 
   editParcelStatusById = (parcelId, { ...status }) => {
     const parcelObj = this.getParcelById(parcelId);
@@ -134,7 +144,7 @@ class ParcelsCollection extends Array {
     });
 
     return editedParcel;
-  }
+  };
 
   removeParcelById = (parcelId) => {
     let parcelIndex = null;
