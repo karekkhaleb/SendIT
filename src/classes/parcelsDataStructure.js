@@ -157,8 +157,6 @@ class ParcelsCollection extends Array {
     }
     if (tempParcel) {
       this.splice(parcelIndex, 1);
-
-      // }
     } else {
       return null;
     }
