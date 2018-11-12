@@ -25,14 +25,14 @@ const objectsForTesting = [
     weight: 88,
     pickupLocation: 'france',
     destination: 'kampala',
-    description: 'Thi is in the BeforeAll, so it should be always available',
+    description: 'Thi is in the BeforeAll, #1',
   },
   {
     userId: 5,
     weight: 88,
     pickupLocation: 'berlin',
     destination: 'kampala',
-    description: 'Thi is in the second in  BeforeAll, so it should be always available',
+    description: 'Thi is in the BeforeAll, #2',
   },
 ];
 const urlCreateParcel = 'http://localhost:9000/api/v1/parcels';

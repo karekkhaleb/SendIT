@@ -29,19 +29,18 @@ describe('Testing The get parcel by id endpoint', () => {
   });
   it('should give a proper status code if a proper id is given', (done) => {
     request.post(urlCreateParcel, {
-      json: objectsForTesting[3],
-    }).on('response', () => {
-      request.get(`${urlGetSingleParcelByIdRoot}/2`, (error, response) => {
-        expect(response.statusCode).toBe(200);
-        done();
+      json: objectsForTesting[2],
+    })
+      .on('response', () => {
+        request.post(urlCreateParcel, {
+          json: objectsForTesting[3],
+        })
+          .on('response', () => {
+            request.get(`${urlGetSingleParcelByIdRoot}/2`, (error, response) => {
+              expect(response.statusCode).toBe(200);
+              done();
+            });
+          });
       });
-
-
-      // request.put(`${urlCancelParcelByIdRoot}/1/cancel`, (error, response, body) => {
-      //   // console.log(body);
-      //   expect(response.statusCode).toBe(202);
-      //   done();
-      // });
-    });
   });
 });
