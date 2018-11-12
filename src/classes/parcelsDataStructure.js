@@ -155,13 +155,18 @@ class ParcelsCollection extends Array {
         break;
       }
     }
-    if (parcelIndex) {
+    console.log(tempParcel);
+    if (tempParcel) {
+      // if (parcelIndex === 0) {
+      //   this.shift();
+      // } else {
       this.splice(parcelIndex, 1);
+
+      // }
     } else {
       return null;
     }
     return tempParcel;
   }
 }
-
 export default ParcelsCollection;
