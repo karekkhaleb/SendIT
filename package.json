@@ -16,7 +16,7 @@
     "build": "webpack -w",
     "report": "nyc report",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "test": "cross-env NODE_ENV=test nyc node_modules/.bin/jasmine",
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text node_modules/.bin/jasmine",
     "test5": "babel-node node_modules/.bin/jasmine",
     "test6": "istanbul cover --include-all-sources jasmine-node test",
     "ijcover": "istanbul cover --include-all-sources babel-node node_modules/.bin/jasmine"
