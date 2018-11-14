@@ -16,9 +16,12 @@
     "build": "webpack -w",
     "report": "nyc report",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text node_modules/.bin/jasmine",
+    "tpp": "cross-env NODE_ENV=test nyc report --reporter=text-lcov node_modules/.bin/jasmine",
+    "testxy": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text node_modules/.bin/jasmine",
+    "tmp": "cross-env NODE_ENV=test nyc --reporter=lcov jasmine",
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text --es-modules node_modules/.bin/jasmine",
     "test5": "babel-node node_modules/.bin/jasmine",
-    "test6": "istanbul cover --include-all-sources jasmine-node test",
+    "test6": "istanbul cover --include-all-sources jasmine-node spec",
     "ijcover": "istanbul cover --include-all-sources babel-node node_modules/.bin/jasmine"
   },
   "repository": {
@@ -33,11 +36,11 @@
   "homepage": "https://github.com/karekkhaleb/SendIT#readme",
   "devDependencies": {
     "@babel/core": "^7.1.5",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/preset-env": "^7.1.5",
     "@babel/register": "^7.0.0",
-    "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.1",
-    "babel-loader": "^7.1.5",
+    "babel-loader": "^8.0.4",
     "babel-plugin-istanbul": "^5.1.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
@@ -57,7 +60,6 @@
   },
   "dependencies": {
     "cross-env": "^5.2.0",
-    "express": "^4.16.4",
-    "jasmine-es6": "^0.4.3"
+    "express": "^4.16.4"
   }
 }

@@ -1,24 +1,21 @@
 import express from 'express';
 
-import ParcelsCollection from '../classes/parcelsDataStructure';
+import Parcels, {
+  getParcelById,
+  getParcelsByUserId,
+  createNewParcel,
+  removeParcelById,
+} from '../classes/parcelsDataStructure';
 
 const Router = express.Router();
 const myParcels = new ParcelsCollection();
 
 
 Router.get('/', (req, res) => {
-  // database.createNewParcel();
-  res.json(myParcels);
+  res.json(Parcels);
 });
 
 Router.post('/', (req, res) => {
-  /**
-   * =====Setting up the price====
-   * The currency is $
-   * 1kg of weight cost 12$
-   */
-  const price = req.body.weight * 12;
-
   const createdParcel = myParcels.createNewParcel(
     req.body.userId,
     req.body.weight,

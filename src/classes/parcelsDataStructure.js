@@ -1,16 +1,126 @@
 class Parcel {
-  constructor({ ...payload }) {
-    this.parcelId = payload.parcelId;
-    this.userId = payload.userId;
-    this.weight = payload.weight;
-    this.pickupLocation = payload.pickupLocation;
-    this.currentLocation = payload.pickupLocation;
-    this.destination = payload.destination;
-    this.description = payload.description;
-    this.delivered = payload.delivered;
-    this.price = payload.price;
+  constructor({
+    parcelId,
+    userId,
+    weight,
+    pickupLocation,
+    destination,
+    description,
+    delivered,
+    price,
+  }) {
+    this.parcelId = parcelId;
+    this.userId = userId;
+    this.weight = weight;
+    this.pickupLocation = pickupLocation;
+    this.currentLocation = pickupLocation;
+    this.destination = destination;
+    this.description = description;
+    this.delivered = delivered;
+    this.price = price;
   }
 }
+
+
+const Parcels = [];
+
+function createNewParcel({
+  userId, weight, pickupLocation, destination, description,
+}) {
+  const price = weight * 12; // 12 is the price of 1kg in USD
+  if (!Parcels.length) {
+    const newParcel = new Parcel({
+      userId,
+      weight,
+      pickupLocation,
+      destination,
+      description,
+      price,
+      parcelId: 1,
+      delivered: false,
+    });
+    Parcels.push(newParcel);
+    return newParcel;
+  }
+  const parcelId = Parcels[Parcels.length - 1].parcelId + 1;
+  const newParcel = new Parcel({
+    parcelId, userId, weight, pickupLocation, destination, description, price,
+  });
+  Parcels.push(newParcel);
+  return newParcel;
+}
+
+
+function getParcelById(parcelId) {
+// eslint-disable-next-line no-restricted-syntax
+  for (const parcel of Parcels) {
+    if (parcel.parcelId === parcelId) {
+      return parcel;
+    }
+  }
+  return null;
+}
+
+function getParcelsByUserId(userId) {
+  const parcelsForOneUser = [];
+  Parcels.forEach((parcel) => {
+    if (parcel.userId === userId) {
+      parcelsForOneUser.push(parcel);
+    }
+  });
+  if (parcelsForOneUser.length) return parcelsForOneUser;
+  return [];
+}
+
+function removeParcelById(parcelId) {
+  let parcelIndex = 0;
+  let tempParcel = null;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const parcel of Parcels) {
+    if (parcel.parcelId === parcelId) {
+      tempParcel = parcel;
+      break;
+    }
+    parcelIndex += 1;
+  }
+  if (tempParcel) {
+    Parcels.splice(parcelIndex, 1);
+    return tempParcel;
+  }
+  return null;
+}
+
+
+createNewParcel({
+  userId: 1,
+  weight: 87,
+  pickupLocation: 'kigali',
+  destination: 'musanze',
+  description: 'TV set',
+});
+createNewParcel({
+  userId: 1,
+  weight: 14,
+  pickupLocation: 'gisozi',
+  destination: 'nyabugogo',
+  description: 'IphoneX',
+});
+console.log('*******************', Parcels, '*********************');
+console.log(removeParcelById(85));
+console.log('*******************', Parcels, '*********************');
+console.log(removeParcelById(2));
+console.log('*******************', Parcels, '*********************');
+
+export default Parcels;
+export {
+  removeParcelById,
+  createNewParcel,
+  getParcelsByUserId,
+  getParcelById,
+};
+
+
+/**
 
 class ParcelsCollection extends Array {
   createNewParcel = (
@@ -164,3 +274,6 @@ class ParcelsCollection extends Array {
   }
 }
 export default ParcelsCollection;
+
+export { Parcels };
+*/
