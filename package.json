@@ -16,7 +16,7 @@
     "build": "webpack -w",
     "report": "nyc report",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "ptest":"cross-env NODE_ENV=test babel-node ./node_modules/bin/jasmine-node ./spec",
+    "ptest": "cross-env NODE_ENV=test babel-node ./node_modules/bin/jasmine-node ./spec ",
     "testold": "cross-env NODE_ENV=test nyc jasmine-node ./spec",
     "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text ./node_modules/.bin/jasmine-node spec",
     "test6": "istanbul cover --include-all-sources babel-node --exec jasmine-node spec"
@@ -40,6 +40,7 @@
     "@babel/register": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "babel-plugin-istanbul": "^5.1.0",
+    "coveralls": "^3.0.2",
     "eslint": "^5.8.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
