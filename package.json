@@ -15,7 +15,7 @@
     "dev": "nodemon ./api/server.js",
     "build": "webpack -w",
     "report": "nyc report",
-    "coverage": "nyc report --reporter=text-lcov | && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "coverage": "nyc report --reporter=text-lcov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "ptest": "cross-env NODE_ENV=test babel-node ./node_modules/bin/jasmine-node ./spec ",
     "testold": "cross-env NODE_ENV=test nyc jasmine-node ./spec",
     "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text ./node_modules/.bin/jasmine-node spec",
