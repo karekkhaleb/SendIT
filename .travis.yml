@@ -8,6 +8,6 @@ before_install:
 cache: npm
 
 after_success:
-  -npm run coveralls
+  -npm run coverage
 
 
