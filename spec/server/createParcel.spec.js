@@ -2,26 +2,21 @@
 import request from 'request';
 import server from '../../src/app';
 import objectsForTesting, {
-  urlGetAllParcels,
-  urlGetParcelsByUserIdRoot,
-  urlGetSingleParcelByIdRoot,
-  urlCreateParcel,
-  urlCancelParcelByIdRoot,
+  urlParcels,
 } from './testUtils';
-
 
 /**
  * Create parcel
  */
 describe('Testing the create parcel endpoint', () => {
   it('should return a proper message if wrong or no data is passed', (done) => {
-    request.post(urlCreateParcel, (error, response, body) => {
+    request.post(urlParcels, (error, response, body) => {
       expect(JSON.parse(body).message).toEqual('you sent wrong data');
       done();
     });
   });
   it('should return the created parcel', (done) => {
-    request.post(urlCreateParcel, {
+    request.post(urlParcels, {
       json: {
         userId: 7,
         weight: 21,

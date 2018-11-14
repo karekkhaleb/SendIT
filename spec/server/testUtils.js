@@ -35,18 +35,12 @@ const objectsForTesting = [
     description: 'Thi is in the BeforeAll, #2',
   },
 ];
-const urlCreateParcel = 'http://localhost:9000/api/v1/parcels';
-// Root means that it is just a small part of the url
-const urlGetParcelsByUserIdRoot = 'http://localhost:9000/api/v1/users';
-const urlGetSingleParcelByIdRoot = 'http://localhost:9000/api/v1/parcels';
-const urlCancelParcelByIdRoot = 'http://localhost:9000/api/v1/parcels';
-const urlGetAllParcels = 'http://localhost:9000/api/v1/parcels';
+
+const urlParcels = 'http://localhost:9000/api/v1/parcels';
+const urlUserParcels = 'http://localhost:9000/api/v1/parcels';
 
 export default objectsForTesting;
 export {
-  urlCancelParcelByIdRoot,
-  urlCreateParcel,
-  urlGetSingleParcelByIdRoot,
-  urlGetParcelsByUserIdRoot,
-  urlGetAllParcels,
+  urlParcels,
+  urlUserParcels,
 };

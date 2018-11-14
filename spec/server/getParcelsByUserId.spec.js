@@ -2,11 +2,8 @@
 import request from 'request';
 import server from '../../src/app';
 import objectsForTesting, {
-  urlGetAllParcels,
-  urlGetParcelsByUserIdRoot,
-  urlGetSingleParcelByIdRoot,
-  urlCreateParcel,
-  urlCancelParcelByIdRoot,
+  urlUserParcels,
+  urlParcels,
 } from './testUtils';
 
 /**
@@ -14,11 +11,11 @@ import objectsForTesting, {
  */
 describe('Testing get parcels by user id', () => {
   beforeEach((Done) => {
-    request.post(urlCreateParcel)
+    request.post(urlParcels)
       .json(objectsForTesting[0], (done) => {
         done();
       });
-    request.post(urlCreateParcel)
+    request.post(urlParcels)
       .json(objectsForTesting[1], (done) => {
         done();
       });
@@ -26,7 +23,7 @@ describe('Testing get parcels by user id', () => {
   });
 
   it('should return all the parcels created by the user passed in', (done) => {
-    request.get(`${urlGetParcelsByUserIdRoot}/1/parcels`, (error, response, body) => {
+    request.get(`${urlUserParcels}/1/parcels`, (error, response, body) => {
       expect(JSON.parse(body).length).toEqual(2);
       done();
     });

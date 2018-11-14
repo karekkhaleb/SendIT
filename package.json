@@ -17,7 +17,8 @@
     "report": "nyc report",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "ptest":"cross-env NODE_ENV=test babel-node ./node_modules/bin/jasmine-node ./spec",
-    "test": "cross-env NODE_ENV=test nyc jasmine-node ./spec",
+    "testold": "cross-env NODE_ENV=test nyc jasmine-node ./spec",
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text ./node_modules/.bin/jasmine-node spec",
     "test6": "istanbul cover --include-all-sources babel-node --exec jasmine-node spec"
   },
   "repository": {
