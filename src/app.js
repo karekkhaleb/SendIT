@@ -1,6 +1,7 @@
 /* eslint-disable prefer-template */
 import express from 'express';
-import parcelsRoutesV1, { myParcels } from './routes/parcelsRoutesV1';
+import parcelsRoutesV1 from './routes/parcelsRoutesV1';
+import ParcelsCollection from './classes/parcelsDataStructure';
 
 const port = process.env.PORT || 9000;
 const app = express();
@@ -47,7 +48,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/v1/users/:userId/parcels', (req, res) => {
   const userId = Number.parseInt(req.params.userId, 10);
-  const userParcels = myParcels.getParcelsByUserId(userId);
+  const userParcels = ParcelsCollection.getParcelsByUserId(userId);
   if (userParcels) {
     res.status(200).json(userParcels);
   } else {
@@ -57,5 +58,3 @@ app.get('/api/v1/users/:userId/parcels', (req, res) => {
 
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`the app started on port ${port}`));
-
-export default app;

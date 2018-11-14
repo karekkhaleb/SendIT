@@ -42,19 +42,6 @@ const urlGetSingleParcelByIdRoot = 'http://localhost:9000/api/v1/parcels';
 const urlCancelParcelByIdRoot = 'http://localhost:9000/api/v1/parcels';
 const urlGetAllParcels = 'http://localhost:9000/api/v1/parcels';
 
-
-// beforeAll((done) => {
-//   request.post(urlCreateParcel, {
-//     json: objectsForTesting[3],
-//   }).on('response', () => {
-//     request.post(urlCreateParcel, {
-//       json: objectsForTesting[4],
-//     }, () => {
-//       done();
-//     });
-//   });
-// });
-
 export default objectsForTesting;
 export {
   urlCancelParcelByIdRoot,

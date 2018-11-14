@@ -16,7 +16,7 @@ import objectsForTesting, {
 describe('Testing the create parcel endpoint', () => {
   it('should return a proper message if wrong or no data is passed', (done) => {
     request.post(urlCreateParcel, (error, response, body) => {
-      expect(JSON.parse(body).message).toEqual('Sorry, something might be wrong with your data');
+      expect(JSON.parse(body).message).toEqual('you sent wrong data');
       done();
     });
   });
@@ -30,6 +30,7 @@ describe('Testing the create parcel endpoint', () => {
         description: 'water',
       },
     }, (error, response, body) => {
+      console.log(body);
       expect(
         body.userId === 7
         && body.weight === 21
