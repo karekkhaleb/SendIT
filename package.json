@@ -16,8 +16,8 @@
     "build": "webpack -w",
     "report": "nyc report",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "testxy": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text node_modules/.bin/jasmine",
-    "test": "cross-env NODE_ENV=test nyc --reporter=lcov jasmine-node ./spec",
+    "ptest":"cross-env NODE_ENV=test babel-node ./node_modules/bin/jasmine-node ./spec",
+    "test": "cross-env NODE_ENV=test nyc jasmine-node ./spec",
     "test6": "istanbul cover --include-all-sources babel-node --exec jasmine-node spec"
   },
   "repository": {
@@ -47,11 +47,7 @@
     "jasmine": "^3.3.0",
     "jasmine-node": "^2.0.1",
     "nyc": "^13.1.0",
-    "request": "^2.88.0",
-    "webpack": "^4.17.2",
-    "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.7",
-    "webpack-node-externals": "^1.7.2"
+    "request": "^2.88.0"
   },
   "dependencies": {
     "cross-env": "^5.2.0",

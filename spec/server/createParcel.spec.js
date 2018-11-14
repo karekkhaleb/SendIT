@@ -30,7 +30,6 @@ describe('Testing the create parcel endpoint', () => {
         description: 'water',
       },
     }, (error, response, body) => {
-      console.log(body);
       expect(
         body.userId === 7
         && body.weight === 21
