@@ -2,3 +2,5 @@
 node_modules
 lib
 src/devTests
+coverage
+.nyc_output
