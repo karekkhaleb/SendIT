@@ -9,7 +9,6 @@ Router.get('/', (req, res) => {
 });
 
 Router.post('/', (req, res) => {
-  if (req.body) {
     const body = req.body;
     if (
       !body.userId
@@ -30,7 +29,6 @@ Router.post('/', (req, res) => {
     });
 
     return res.status(201).json(createdParcel);
-  }
 });
 
 Router.get('/:parcelId', (req, res) => {

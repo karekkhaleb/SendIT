@@ -7,21 +7,6 @@ class Parcel {
     userId, weight, pickupLocation, destination, description,
   }) {
     const price = weight * 12; // 12 is the price of 1kg in USD
-    if (!this.Parcels.length) {
-      const newParcel = {
-        userId,
-        weight,
-        pickupLocation,
-        destination,
-        description,
-        price,
-        parcelId: 1,
-        currentLocation: pickupLocation,
-        delivered: false,
-      };
-      this.Parcels.push(newParcel);
-      return newParcel;
-    }
     const parcelId = this.Parcels[this.Parcels.length - 1].parcelId + 1;
     const newParcel = {
       parcelId,
