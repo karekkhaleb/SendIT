@@ -1,0 +1,13 @@
+.orders ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+}
+.orders li{
+    list-style: none;
+    /*width: 25%;*/
+    max-height: 500px;
+    max-width: 250px;
+    overflow: hidden;
+}

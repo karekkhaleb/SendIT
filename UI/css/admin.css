@@ -1,0 +1,20 @@
+.orders-list{
+    height: 500px;
+    overflow-y: scroll
+}
+.edit-order-bg{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    color: #ffffff;
+    /*opacity: .9;*/
+}
+.edit-order-form{
+    position: absolute;
+    left: 35%;
+    top: 30%;
+}
