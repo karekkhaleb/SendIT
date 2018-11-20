@@ -11,25 +11,26 @@ import objectsForTesting, {
  */
 describe('Testing The get parcel by id endpoint', () => {
   it('should give a proper status code if we pass the id that does not exist', (done) => {
-    request.get(`${urlParcels}/8765`, (error, response) => {
+    request.get(`${urlParcels}/8765`, (error, response, body) => {
       expect(response.statusCode).toBe(404);
       done();
     });
   });
-  it('should give a proper status code if a proper id is given', (done) => {
-    request.post(urlParcels, {
-      json: objectsForTesting[2],
+  describe("isolating the get parcel by id endpoint", () => {
+    beforeEach((Done) => {
+      request.post(urlParcels, {
+        json: objectsForTesting[2],
+      })
+      
+      request.post(urlParcels, {
+        json: objectsForTesting[3],
+      })
+      Done();
     })
-      .on('response', () => {
-        request.post(urlParcels, {
-          json: objectsForTesting[3],
-        })
-          .on('response', () => {
-            request.get(`${urlParcels}/2`, (error, response) => {
-              expect(response.statusCode).toBe(200);
-              done();
-            });
-          });
+    it('should give a proper status code if a proper id is given', () => {
+      request.get(`${urlParcels}/2`, (error, response) => {
+        expect(response.statusCode).toBe(200);
       });
+    });
   });
 });

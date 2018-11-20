@@ -8,11 +8,12 @@ const app = express();
 
 // middleware
 app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
 app.use('/api/v1/parcels/', parcelsRoutesV1);
 
 app.get('/', (req, res) => {
-  res.json({
+  res.status(200).json({
     message: 'Welcome to my API, this is the information about my api',
     apiV1Routes: {
       gettingAllParcels: {
@@ -49,11 +50,7 @@ app.get('/', (req, res) => {
 app.get('/api/v1/users/:userId/parcels', (req, res) => {
   const userId = Number.parseInt(req.params.userId, 10);
   const userParcels = ParcelsCollection.getParcelsByUserId(userId);
-  if (userParcels) {
-    res.status(200).json(userParcels);
-  } else {
-    res.status(200).json([]);
-  }
+  res.status(200).json(userParcels);
 });
 
 
