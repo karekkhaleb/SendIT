@@ -1,0 +1,55 @@
+{
+  "name": "sendit-api",
+  "version": "1.0.0",
+  "description": "this is just the api for the rest of the project",
+  "main": "server.js",
+  "nyc": {
+    "require": [
+      "@babel/register"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  },
+  "scripts": {
+    "start": "cross-env NODE_ENV=production babel-node ./src/app.js",
+    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./src/app.js",
+    "report": "nyc report",
+    "coverage": "nyc report --reporter=text-lcov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "ptest": "cross-env NODE_ENV=test nyc ./node_modules/.bin/jasmine-node spec",
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text ./node_modules/.bin/jasmine-node spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karekkhaleb/SendIT.git"
+  },
+  "author": "Caleb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karekkhaleb/SendIT/issues"
+  },
+  "homepage": "https://github.com/karekkhaleb/SendIT#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.1.5",
+    "@babel/register": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-istanbul": "^5.1.0",
+    "coveralls": "^3.0.2",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jasmine": "^2.10.1",
+    "istanbul": "^0.4.5",
+    "jasmine": "^3.3.0",
+    "jasmine-node": "^2.0.1",
+    "nyc": "^13.1.0",
+    "request": "^2.88.0"
+  },
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "express": "^4.16.4"
+  }
+}
