@@ -1,0 +1,30 @@
+.landing{
+  background: rgb(170, 170, 170);
+  background-image: url('../img/landing-img.jpg');
+  background-size: cover;
+  height: 100vh;
+  display: relative;
+}
+.landing > div{
+  content: '';
+  display: absolute;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.411);
+}
+.details-container{
+  color: white;
+  text-shadow: 0 0 10px black;
+  font-size: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center
+}
+
+.createp-form{
+  display: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+}

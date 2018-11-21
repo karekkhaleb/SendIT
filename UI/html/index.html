@@ -1,37 +1,70 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/index.css">
-
-    <title>Welcome to SendIT</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/index.css"/>
+  <style>
+    
+  </style>
+  <title>Home</title>
 </head>
-<body class="linear-backgroundc">
-<div>
+<body>
+  <div class="navigation-container">
+    <a href="./index.html" class="app-logo">
+      <img src="../img/SEND-IT.png" alt="log">
+    </a>  
     <nav class="navigation">
-        <ul>
-            <li><a href="signup.html">Sign Up</a></li>
-            <li><a href="signin.html">Sign in</a></li>
-            <li><a href="create-order.html">New Orders</a></li>
-            <li><a href="user-profile.html">Profile</a></li>
-            <li><a href="admin-update-order.html">Admin</a></li>
-        </ul>
+      <ul>
+          <li><a href="signup.html">Sign Up</a></li>
+          <li><a href="signin.html">Sign in</a></li>
+          <li><a href="user-profile.html">Profile</a></li>
+          <li><a href="admin-update-order.html">Admin</a></li>
+      </ul> 
     </nav>
-    <div class="container">
-        <h1 class="center">Welcome to sendIT</h1>
-        <div class="container center margin padding card dark-background">
-            <h3 class="padding margin">This is the </h3>
-            <p class="margin">NUMBER ONE Parcel delivery platform in this universe</p>
-            <p class="margin-bottom">
-                You can not go wrong with this most trusted, time tested, widely used platform
-            </p>
-            <p class="margin padding">Ages of regret are long gone, Wecome to <b>SendIT</b></p>
+  </div>
+  <div class="landing">
+      <div class="details-container">
+        <div>
+          <h1>SEND-IT</h1>
+          <p>A good parcel delivery platform...</p>
         </div>
+      </div>
+  </div>  
+  <!-- create parcel btn -->
+  <div class="relative-position">
+    <div id="createp-btn" class="circle-btn">
+      <h1>+</h1>
     </div>
-</div>
+  </div>
+  <div class="relative-position">
+    <div class="createp-form">
+        <form class="card transparant-bg white-text" action="./user-profile.html">
+          <div class="inputs">
+              <label>Order Description</label>
+              <input class="input-field" type="text" name="weight">
+          </div>
+            <div class="inputs">
+                <label>Order Weight</label>
+                <input class="input-field" type="text" name="weight" placeholder="in kg">
+            </div>
+            <div class="inputs">
+                <label>Pickup Location</label>
+                <input class="input-field" type="text" name="pickup-loc">
+            </div>
+            <div class="inputs lex-in-rowdth">
+                <label>Order Destination</label>
+                <input class="input-field" type="text" name="destination">
+            </div>
+            <div class="inputs center flex-in-row">
+                <input type="submit" class="btn small-text rounded-border" value="Submit"/>
+                <span id="close-create-form" class="btn big-text rounded-border">cancel</span>
+            </div>
+        </form>
+    </div>
+  </div>
+  <script src="../js/indexp.js" ></script>
 </body>
 </html>
