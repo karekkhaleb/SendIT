@@ -1,14 +1,21 @@
 @import "reset.css";
-@import "new-orders.css";
+/* @import "new-orders.css"; */
 .container{
     margin: 0 10%;
 }
-.navigation{
-    background-color: #ffffff;
+
+.navigation-container{
+    /* background-color: rgba(51, 51, 51, 0.534); */
+    /* box-shadow: 0 0 20px; */
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
 }
 .navigation ul{
     display: flex;
     flex-direction: row-reverse;
+    opacity: 1;
     /*justify-content: flex-end;*/
 }
 .navigation a{
@@ -23,6 +30,12 @@
 }
 .navigation li{
     list-style: none;
+}
+.app-logo img{
+    margin-top: 3px;    
+}
+.app-logo img{
+    height: 45px;
 }
 .dark-background{
     background-color: #333333;
@@ -51,22 +64,15 @@
     padding: 10px;
     border: 0;
 }
-.inputs label{
-    /*min-width: 100px;*/
-}
 
 .inputs label, .inputs input, .inputs textarea{
     display: inline-block;
-    /*max-width: 100%;*/
     margin: 10px 0;
     box-sizing: border-box;
 }
 .inputs input, .inputs textarea{
     font-size: 1.2em;
     padding: 10px;
-
-}
-.inputs textarea{
 
 }
 .inputs > *{
@@ -89,10 +95,10 @@
     text-align: center;
 }
 .linear-backgroundc{
-    background: linear-gradient(white, blueviolet) no-repeat;
+    /* background: linear-gradient(white, blueviolet) no-repeat;
     background-position-y: 50px;
     background-size: cover;
-    min-height: 100vh;
+    min-height: 100vh; */
 }
 .light-gray-background{
     background-color: #cccccc;
@@ -124,10 +130,47 @@
 .red-bg{
     background-color: red;
 }
+.blue-bg{
+    background-color: #507c91;
+}
+.white-bg{
+    background: white;
+}
 .pos-right{
     position: absolute;
     right: 0;
     top: 0;
+}
+.relative-position{
+    position: relative;
+}
+.circle-btn{
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    background-color: brown;
+    padding: 15px 25px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.transparant-bg{
+    background-color: rgba(0, 0, 0, 0.719);
+}
+.white-text{
+    color: white;
+}
+.flex-in-row{
+    display: flex;
+    flex-direction: row;
+}
+.margin-top-big{
+    margin-top: 200px;
+}
+.padding-top-100{
+    padding-top: 100px;
+}
+.padding-top-50{
+    padding-top: 50px;
 }
 @media screen and (min-width: 800px)  {
     .half-width{
