@@ -37,6 +37,12 @@
 .app-logo img{
     height: 45px;
 }
+.parcels-list li{
+    background-color: rgba(0, 0, 0, 0.507);
+    padding: 17px;
+    border-radius: 5px;
+    color: #ffffff;
+}
 .dark-background{
     background-color: #333333;
     color: #cccccc;
