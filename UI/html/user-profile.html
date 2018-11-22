@@ -5,25 +5,30 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/profile.css">
-    <title>Create Order!</title>
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>User Profile</title>
 </head>
-<body class="linear-backgroundc">
-    <nav class="navigation">
-        <ul>
-            <li><a href="signup.html">Sign Up</a></li>
-            <li><a href="signin.html">Sign in</a></li>
-            <li><a href="create-order.html">New Orders</a></li>
-            <li><a href="user-profile.html">Profile</a></li>
-            <li><a href="admin-update-order.html">Admin</a></li>
-        </ul>
-    </nav>
+<body class="blue-bg">
+    <div class="navigation-container">
+        <a href="./index.html" class="app-logo">
+          <img src="../img/SEND-IT.png" alt="log">
+        </a>  
+        <nav class="navigation">
+          <ul>
+              <li><a href="signup.html">Sign Up</a></li>
+              <li><a href="signin.html">Sign in</a></li>
+              <li><a href="user-profile.html">Profile</a></li>
+              <li><a href="admin-update-order.html">Admin</a></li>
+          </ul> 
+        </nav>
+      </div>
+      <div class="container position-relative padding-top-50">
         <h1 class="center margin">User's Profile</h1>
         <div class="dual-content container within-window-height">
             <div>
                 <span class="big-text"><b>Order list</b><small>(Click the order to see more information)</small></span>
-                <ol class="padding mouse-pointer-list">
+                <ol class="padding mouse-pointer-list parcels-list">
                     <li class="margin ">Wedding invitation to be delivered to Mr. User</li>
                     <li class="margin ">Web development course to be delivered to XY</li>
                     <li class="margin ">Wedding invitation to be delivered to Mr. User</li>
@@ -80,6 +85,8 @@
                 </section>
             </div>
         </div>
+      </div>
+        
     <div class="edit-order-bg">
         <div class="container">
             <h2 class="center margin padding ">Change your order Destination or Cancel it.</h2>
@@ -96,6 +103,6 @@
             </form>
         </div>
     </div>
-<script src="./js/profile.js" ></script>
+<script src="../js/profile.js" ></script>
 </body>
 </html>
