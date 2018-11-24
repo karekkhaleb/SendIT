@@ -1,7 +1,14 @@
 .orders-list{
     height: 500px;
-    width: 50%;
+    min-width: 50%;
     overflow-y: scroll
+}
+.details-section{
+    margin:auto
+}
+.orders-list-container{
+    display:flex; 
+    padding:0
 }
 .edit-order-bg{
     display: none;

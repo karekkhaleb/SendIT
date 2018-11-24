@@ -9,9 +9,10 @@ const orderList = document.querySelectorAll('.orders-list li');
  */
 orderList.forEach((li)=>{
     li.addEventListener('click', () => {
-        editOrderBackground.style.display = 'block';
+        // editOrderBackground.style.display = 'block';
     })
 });
+
 /**
  * closing the admin form to edit the order
  */
