@@ -10,9 +10,9 @@ import objectsForTesting, {
  * Cancel parcel
  */
 describe('Testing the cancel parcel endpoint', () => {
-  it('should return a proper status code if a proper we try to cancels a parcel that does not exist', (done) => {
+  it('should return a proper status code if we try to cancels a parcel that does not exist', (done) => {
     request.put(`${urlParcels}/987/cancel`, (error, response, body) => {
-      expect(response.statusCode).toBe(404);
+      expect(response.statusCode).toBe(400);
       done();
     });
   });
@@ -21,11 +21,26 @@ describe('Testing the cancel parcel endpoint', () => {
     request.post(urlParcels, {
       json: objectsForTesting[4],
     }).on('response', () => {
-      request.put(`${urlParcels}/1/cancel`, (error, response, body) => {
-        // console.log(body);
+      request.put(`${urlParcels}/2/cancel`, { json: { status: 'canceled' } }, (error, response, body) => {
         expect(response.statusCode).toBe(202);
         done();
       });
+    });
+  });
+
+  it('should give a status code of 500 if we update a parcel that does not exist', (done) => {
+    request.put(`${urlParcels}/not-present/cancel`, { json: { status: 'canceled' } }, (error, response, body) => {
+      // console.log(body);
+      expect(response.statusCode).toBe(500);
+      done();
+    });
+  });
+
+  it('should give a proper message if we send the wrong parcel status', (done) => {
+    request.put(`${urlParcels}/1/cancel`, { json: { status: 'bad-status' } }, (error, response, body) => {
+      // console.log(body);
+      expect(body.message).toEqual('what kind of status is that one');
+      done();
     });
   });
 });

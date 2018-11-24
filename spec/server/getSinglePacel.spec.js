@@ -16,17 +16,17 @@ describe('Testing The get parcel by id endpoint', () => {
       done();
     });
   });
-  describe("isolating the get parcel by id endpoint", () => {
+  describe('isolating the get parcel by id endpoint', () => {
     beforeEach((Done) => {
       request.post(urlParcels, {
         json: objectsForTesting[2],
-      })
-      
+      });
+
       request.post(urlParcels, {
         json: objectsForTesting[3],
-      })
+      });
       Done();
-    })
+    });
     it('should give a proper status code if a proper id is given', () => {
       request.get(`${urlParcels}/2`, (error, response) => {
         expect(response.statusCode).toBe(200);

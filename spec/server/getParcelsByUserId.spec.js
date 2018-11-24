@@ -19,7 +19,7 @@ describe('Testing get parcels by user id', () => {
   });
   it('should return all the parcels created by the user passed in', () => {
     request.get(`${urlUserParcels}/1/parcels`, (error, response, body) => {
-      expect(JSON.parse(body).length).toEqual(2);
+      expect(JSON.parse(body).length).toEqual(1);
     });
   });
 
@@ -27,10 +27,10 @@ describe('Testing get parcels by user id', () => {
     request.get(`${urlUserParcels}/no-data/parcels`, (error, response, body) => {
       expect(JSON.parse(body).length).toEqual(0);
     });
-  })
+  });
   it('should give a status code of 200 when the given user does not have any parcel', () => {
     request.get(`${urlUserParcels}/no-data/parcels`, (error, response, body) => {
       expect(response.statusCode).toEqual(200);
     });
-  })
+  });
 });

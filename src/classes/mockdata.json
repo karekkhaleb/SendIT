@@ -6,7 +6,7 @@
     "pickupLocation": "kigali",
     "currentLocation": "muhanga",
     "destination": "butare",
-    "delivered": false,
+    "status": "delivered",
     "description": "TV set",
     "price": 500
   }
