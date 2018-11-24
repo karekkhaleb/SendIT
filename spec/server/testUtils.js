@@ -1,13 +1,13 @@
 const objectsForTesting = [
   {
-    userId: 1,
+    userId: 6,
     weight: 85,
     pickupLocation: 'kigali',
     destination: 'musanze',
     description: 'mobile phone',
   },
   {
-    userId: 1,
+    userId: 6,
     weight: 41,
     pickupLocation: 'rwanda',
     destination: 'usa',

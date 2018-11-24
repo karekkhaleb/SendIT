@@ -17,7 +17,7 @@ class Parcel {
       description,
       price,
       currentLocation: pickupLocation,
-      delivered: false,
+      status: 'in-progress',
     };
     this.Parcels.push(newParcel);
     return newParcel;
@@ -44,9 +44,11 @@ class Parcel {
     return [];
   }
 
-  removeParcelById(parcelId) {
+  changeParcelStatus(parcelId, status) {
     let parcelIndex = 0;
     let tempParcel = null;
+    // console.log(status);
+
     // eslint-disable-next-line no-restricted-syntax
     for (const parcel of this.Parcels) {
       if (parcel.parcelId === parcelId) {
@@ -55,12 +57,37 @@ class Parcel {
       }
       parcelIndex += 1;
     }
-    if (tempParcel) {
-      this.Parcels.splice(parcelIndex, 1);
-      return tempParcel;
+
+    if (tempParcel && (tempParcel.status !== 'delivered' && tempParcel.status !== 'canceled')) {
+      const updatedParcel = { ...tempParcel, status };
+      this.Parcels = [
+        ...this.Parcels.slice(0, parcelIndex),
+        updatedParcel,
+        ...this.Parcels.slice(parcelIndex + 1),
+      ];
+      return updatedParcel;
     }
     return null;
   }
+
+//   removeParcelById(parcelId) {
+//     let parcelIndex = 0;
+//     let tempParcel = null;
+//     // eslint-disable-next-line no-restricted-syntax
+//     for (const parcel of this.Parcels) {
+//       if (parcel.parcelId === parcelId) {
+//         tempParcel = parcel;
+//         break;
+//       }
+//       parcelIndex += 1;
+//     }
+//     // console.log(this.Parcels);
+//     if (tempParcel) {
+//       this.Parcels.splice(parcelIndex, 1);
+//       return tempParcel;
+//     }
+//     return null;
+//   }
 }
 
 export default new Parcel();
