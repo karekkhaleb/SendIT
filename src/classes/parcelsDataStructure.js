@@ -1,4 +1,5 @@
 import mockData from './mockdata';
+import conn from '../db/conn';
 
 class Parcel {
   Parcels = [...mockData];
@@ -88,6 +89,9 @@ class Parcel {
 //     }
 //     return null;
 //   }
+  signup(authData) {
+    return conn.signup(authData);
+  }
 }
 
 export default new Parcel();

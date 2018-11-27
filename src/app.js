@@ -2,8 +2,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import parcelsRoutesV1 from './routes/parcelsRoutesV1';
+import authRoutes from './routes/authRoutes';
 import ParcelsCollection from './classes/parcelsDataStructure';
-import { Pool } from 'pg';
 
 dotenv.config();
 
@@ -52,6 +52,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/v1/parcels/', parcelsRoutesV1);
+app.use('/api/v1/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.status(200).json({
