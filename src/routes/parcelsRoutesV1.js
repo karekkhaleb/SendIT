@@ -2,6 +2,7 @@
 import express from 'express';
 
 import ParcelsCollection from '../classes/parcelsDataStructure';
+import database from '../db/conn';
 
 const Router = express.Router();
 
@@ -40,23 +41,41 @@ Router.get('/:parcelId', (req, res) => {
   }
 });
 
-Router.put('/:parcelId/cancel', (req, res) => {
+Router.put('/:parcelId/cancel', async (req, res) => {
+  // console.log(req.body);
   const parcelId = Number.parseInt(req.params.parcelId, 10);
-
-  // console.log(req.body.status);
-
   if (!req.body.status) return res.status(400).json({ message: 'please send the status' });
   if (req.body.status === 'delivered' || req.body.status === 'canceled') {
-    // const removedParcel = ParcelsCollection.removeParcelById(parcelId);
-    const updatedParcel = ParcelsCollection.changeParcelStatus(parcelId, req.body.status);
-    // console.log(updatedParcel);
-    if (updatedParcel) {
-      res.status(202).json({ message: 'Parcel updated' });
+    const parcelUpdated = await database.updateParcel(parcelId, { status: req.body.status });
+    if (parcelUpdated === true) {
+      res.status(202).json({ message: 'parcel status changed' });
+    } else if (parcelUpdated && parcelUpdated.message) {
+      res.status(400).json({ message: parcelUpdated.message });
     } else {
       res.status(500).json({ message: 'Parcel not updated' });
     }
   } else {
     return res.status(400).json({ message: 'what kind of status is that one' });
+  }
+});
+
+Router.put('/:parcelId/presentLocation', async (req, res) => {
+  const parcelId = Number.parseInt(req.params.parcelId, 10);
+  if (!req.body.currentLocation) {
+    return res.status(400).json({
+      message: 'please send the current location',
+    });
+  }
+
+  const parcelUpdated = await database.updateParcel(parcelId, {
+    currentLocation: req.body.currentLocation,
+  });
+  if (parcelUpdated === true) {
+    res.status(202).json({ message: 'location updated' });
+  } else if (parcelUpdated && parcelUpdated.message) {
+    res.status(400).json({ message: parcelUpdated.message });
+  } else {
+    res.status(500).json({ message: 'Parcel not updated' });
   }
 });
 
