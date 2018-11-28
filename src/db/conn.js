@@ -173,6 +173,24 @@ const createParcel = async (parcel) => {
   }
 };
 
+const getParcelById = async (parcelId) => {
+  const query = 'select * from parcels where id = $1';
+  const params = [parcelId];
+  const connection = await connect();
+  try {
+    const result = await connection.query(query, params);
+    if (result.rows) {
+      return result.rows[0];
+    }
+    return null;
+  } catch (error) {
+    console.log(error);
+    return null;
+  } finally {
+    connection.release();
+  }
+};
+
 export default {
   signup,
   signin,
@@ -180,4 +198,5 @@ export default {
   getParcelsByUserId,
   getAllParcels,
   createParcel,
+  getParcelById,
 };

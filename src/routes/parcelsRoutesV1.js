@@ -40,11 +40,14 @@ Router.post('/', async (req, res) => {
   res.status(500).json({ message: 'an error occured' });
 });
 
-Router.get('/:parcelId', (req, res) => {
+Router.get('/:parcelId', async (req, res) => {
   const parcelId = Number.parseInt(req.params.parcelId, 10);
-  const parcel = ParcelsCollection.getParcelById(parcelId);
+  if (typeof parcelId !== 'number') {
+    return res.status(400).json({ message: 'The id should be an integer' });
+  }
+  const parcel = await database.getParcelById(parcelId);
   if (parcel) {
-    res.status(200).json(parcel);
+    res.status(200).json({ parcel });
   } else {
     res.status(404).json({ message: 'No match found' });
   }
