@@ -11,7 +11,7 @@
     "instrument": false
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=production babel-node ./src/app.js",
+    "start": "cross-env  NODE_ENV=production babel-node ./src/app.js",
     "dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./src/app.js",
     "report": "nyc report",
     "coverage": "nyc report --reporter=text-lcov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
