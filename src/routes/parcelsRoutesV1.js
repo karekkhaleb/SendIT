@@ -42,10 +42,11 @@ Router.get('/:parcelId', (req, res) => {
 });
 
 Router.put('/:parcelId/cancel', async (req, res) => {
+  // console.log(req.body);
   const parcelId = Number.parseInt(req.params.parcelId, 10);
   if (!req.body.status) return res.status(400).json({ message: 'please send the status' });
   if (req.body.status === 'delivered' || req.body.status === 'canceled') {
-    const parcelUpdated = await database.changeParcelStatus(parcelId, req.body.status);
+    const parcelUpdated = await database.updateParcel(parcelId, { status: req.body.status });
     if (parcelUpdated === true) {
       res.status(202).json({ message: 'parcel status changed' });
     } else if (parcelUpdated && parcelUpdated.message) {
@@ -55,6 +56,26 @@ Router.put('/:parcelId/cancel', async (req, res) => {
     }
   } else {
     return res.status(400).json({ message: 'what kind of status is that one' });
+  }
+});
+
+Router.put('/:parcelId/presentLocation', async (req, res) => {
+  const parcelId = Number.parseInt(req.params.parcelId, 10);
+  if (!req.body.currentLocation) {
+    return res.status(400).json({
+      message: 'please send the current location',
+    });
+  }
+
+  const parcelUpdated = await database.updateParcel(parcelId, {
+    currentLocation: req.body.currentLocation,
+  });
+  if (parcelUpdated === true) {
+    res.status(202).json({ message: 'location updated' });
+  } else if (parcelUpdated && parcelUpdated.message) {
+    res.status(400).json({ message: parcelUpdated.message });
+  } else {
+    res.status(500).json({ message: 'Parcel not updated' });
   }
 });
 

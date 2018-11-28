@@ -67,7 +67,7 @@ const signin = async (authData) => {
   }
 };
 
-const changeParcelStatus = async (parcelId, status) => {
+const updateParcel = async (parcelId, { ...payload }) => {
   let parcel = null;
   const fetchQuery = 'select * from parcels where id = $1';
   const params = [parcelId];
@@ -86,11 +86,20 @@ const changeParcelStatus = async (parcelId, status) => {
     connection.release();
     return { message: `this parcel is already ${parcel.status}` };
   }
-  const query = `
-  update parcels
-  set status = $1 where id = $2;
-  `;
-  const updateParams = [status, parcelId];
+  /**
+   *action stands for what we want to change
+   * either status or current location
+   */
+  let query = null;
+  let action = null;
+  if (payload.status) {
+    query = 'update parcels set status = $1 where id = $2;';
+    action = payload.status;
+  } else if (payload.currentLocation) {
+    query = 'update parcels set current_location = $1 where id = $2;';
+    action = payload.currentLocation;
+  }
+  const updateParams = [action, parcelId];
 
   try {
     await connection.query(query, updateParams);
@@ -106,5 +115,5 @@ const changeParcelStatus = async (parcelId, status) => {
 export default {
   signup,
   signin,
-  changeParcelStatus,
+  updateParcel,
 };
