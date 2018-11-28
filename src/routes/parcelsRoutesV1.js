@@ -79,4 +79,23 @@ Router.put('/:parcelId/presentLocation', async (req, res) => {
   }
 });
 
+Router.put('/:parcelId/destination', async (req, res) => {
+  const parcelId = Number.parseInt(req.params.parcelId, 10);
+  if (!req.body.destination) {
+    return res.status(400).json({
+      message: 'please send the new destination',
+    });
+  }
+  const parcelUpdated = await database.updateParcel(parcelId, {
+    destination: req.body.destination,
+  });
+  if (parcelUpdated === true) {
+    res.status(202).json({ message: 'parcel destination updated' });
+  } else if (parcelUpdated && parcelUpdated.message) {
+    res.status(400).json({ message: parcelUpdated.message });
+  } else {
+    res.status(500).json({ message: 'Parcel not updated' });
+  }
+});
+
 export default Router;

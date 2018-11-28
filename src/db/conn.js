@@ -98,6 +98,9 @@ const updateParcel = async (parcelId, { ...payload }) => {
   } else if (payload.currentLocation) {
     query = 'update parcels set current_location = $1 where id = $2;';
     action = payload.currentLocation;
+  } else if (payload.destination) {
+    query = 'update parcels set destination = $1 where id = $2;';
+    action = payload.destination;
   }
   const updateParams = [action, parcelId];
 
