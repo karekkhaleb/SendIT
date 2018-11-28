@@ -14,25 +14,30 @@ Router.get('/', async (req, res) => {
   res.status(200).json({ parcels });
 });
 
-Router.post('/', (req, res) => {
+Router.post('/', async (req, res) => {
   const { body } = req;
-  if (
-    !body.userId
-      || !body.pickupLocation
-      || !body.destination
-      || !body.weight
-      || !body.description
-  ) {
-    return res.status(400).json({ message: 'you sent wrong data' });
-  }
-  const createdParcel = ParcelsCollection.createNewParcel({
+  if (!body.userId) return res.status(400).json({ message: 'missing userId' });
+  if (!body.pickupLocation) return res.status(400).json({ message: 'missing pickupLocation' });
+  if (!body.destination) return res.status(400).json({ message: 'missing destination' });
+  if (!body.weight) return res.status(400).json({ message: 'missing weight' });
+  if (!body.description) return res.status(400).json({ message: 'missing description' });
+
+  const newParcel = {
     userId: Number.parseInt(req.body.userId, 10),
     weight: Number.parseInt(req.body.weight, 10),
     pickupLocation: req.body.pickupLocation,
     destination: req.body.destination,
     description: req.body.description,
-  });
-  return res.status(201).json(createdParcel);
+    price: Number.parseInt(req.body.weight, 10) * 12, // 12 is the price of 1kg in USD
+    currentLocation: req.body.pickupLocation,
+    status: 'pending',
+  };
+  const createdParccel = await database.createParcel(newParcel);
+
+  if (createdParccel) {
+    return res.status(201).json({ parcel: createdParccel });
+  }
+  res.status(500).json({ message: 'an error occured' });
 });
 
 Router.get('/:parcelId', (req, res) => {
