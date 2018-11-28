@@ -129,9 +129,24 @@ const getParcelsByUserId = async (userId) => {
   }
 };
 
+const getAllParcels = async () => {
+  const query = 'select * from parcels';
+  const connection = await connect();
+  try {
+    const result = await connection.query(query);
+    return result.rows;
+  } catch (error) {
+    console.log(error);
+    return null;
+  } finally {
+    connection.release();
+  }
+};
+
 export default {
   signup,
   signin,
   updateParcel,
   getParcelsByUserId,
+  getAllParcels,
 };
