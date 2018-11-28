@@ -9,44 +9,6 @@ dotenv.config();
 
 const port = process.env.PORT || 9000;
 const app = express();
-/*
-const pool = new Pool();
-
-
-const connect = async () => pool.connect();
-
-const execute = async () => {
-  // const connection = await connect();
-  const query=`CREATE TABLE abantu (
-    id int not null primary key,
-    firstname varchar(200),
-    lastname varchar(200)
-  )`;
-  const connection = await connect();
-
-  try{
-    return await connection.query(query);
-  }catch(error){
-    console.log('this is an error');
-    console.log(error);
-  }finally{
-    connection.release();
-  }
-
-  // console.log(connection);
-
-  // connect().then((res) => {
-  //   console.log(res);
-  // }).catch((err) => {
-  //   console.log(err);
-  // });
-  // console.log(connection);
-}
-
-execute();
-*/
-
-
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

@@ -67,7 +67,44 @@ const signin = async (authData) => {
   }
 };
 
+const changeParcelStatus = async (parcelId, status) => {
+  let parcel = null;
+  const fetchQuery = 'select * from parcels where id = $1';
+  const params = [parcelId];
+  const connection = await connect();
+  try {
+    const result = await connection.query(fetchQuery, params);
+    if (result.rows.length > 0) {
+      // eslint-disable-next-line prefer-destructuring
+      parcel = result.rows[0];
+    } else return { message: 'no match' };
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+  if (parcel && (parcel.status === 'canceled' || parcel.status === 'delivered')) {
+    connection.release();
+    return { message: `this parcel is already ${parcel.status}` };
+  }
+  const query = `
+  update parcels
+  set status = $1 where id = $2;
+  `;
+  const updateParams = [status, parcelId];
+
+  try {
+    await connection.query(query, updateParams);
+    return true;
+  } catch (error) {
+    console.log(error);
+    return null;
+  } finally {
+    connection.release();
+  }
+};
+
 export default {
   signup,
   signin,
+  changeParcelStatus,
 };
