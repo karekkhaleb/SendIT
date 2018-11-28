@@ -143,10 +143,41 @@ const getAllParcels = async () => {
   }
 };
 
+const createParcel = async (parcel) => {
+  const query = `insert into parcels (
+    user_id, weight, description, pickup_location, current_location, destination, price, status
+    ) values(
+      $1, $2, $3, $4, $5, $6, $7, $8
+    ) returning *;
+  `;
+  const params = [
+    parcel.userId,
+    parcel.weight,
+    parcel.description,
+    parcel.pickupLocation,
+    parcel.currentLocation,
+    parcel.destination,
+    parcel.price,
+    parcel.status,
+  ];
+
+  const connection = await connect();
+  try {
+    const result = await connection.query(query, params);
+    return result.rows;
+  } catch (error) {
+    console.log(error);
+    return null;
+  } finally {
+    connection.release();
+  }
+};
+
 export default {
   signup,
   signin,
   updateParcel,
   getParcelsByUserId,
   getAllParcels,
+  createParcel,
 };
