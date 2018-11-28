@@ -11,7 +11,7 @@ const signup = async (authData) => {
     insert into users 
     (user_email, user_password) 
     values 
-    ($1, $2);
+    ($1, $2) returning *;
   `;
   const hashedPassword = bcrypt.hashSync(authData.password);
   const params = [
@@ -20,8 +20,14 @@ const signup = async (authData) => {
   ];
   const connection = await connect();
   try {
-    await connection.query(query, params);
-    return true;
+    const newUser = await connection.query(query, params);
+    console.log(newUser);
+    return {
+      token: jwt.sign({
+        exp: Math.floor(Date.now() / 1000) + (60 * 60),
+        data: newUser.rows[0],
+      }, jwtSecretWord),
+    };
   } catch (e) {
     console.log(e);
     return null;
@@ -58,7 +64,8 @@ const signin = async (authData) => {
       }
       return token;
     }
-    return { message: 'No such a user!' };
+    return null;
+    // return { message: 'No such a user!' };
   } catch (e) {
     console.log(e);
     return null;
@@ -93,20 +100,20 @@ const updateParcel = async (parcelId, { ...payload }) => {
   let query = null;
   let action = null;
   if (payload.status) {
-    query = 'update parcels set status = $1 where id = $2;';
+    query = 'update parcels set status = $1 where id = $2 returning *;';
     action = payload.status;
   } else if (payload.currentLocation) {
-    query = 'update parcels set current_location = $1 where id = $2;';
+    query = 'update parcels set current_location = $1 where id = $2 returning *;';
     action = payload.currentLocation;
   } else if (payload.destination) {
-    query = 'update parcels set destination = $1 where id = $2;';
+    query = 'update parcels set destination = $1 where id = $2 returning *;';
     action = payload.destination;
   }
   const updateParams = [action, parcelId];
 
   try {
-    await connection.query(query, updateParams);
-    return true;
+    const updatedParcel = await connection.query(query, updateParams);
+    return updatedParcel.rows;
   } catch (error) {
     console.log(error);
     return null;

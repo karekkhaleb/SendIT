@@ -3,8 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import parcelsRoutesV1 from './routes/parcelsRoutesV1';
 import authRoutes from './routes/authRoutes';
-import database from './db/conn';
-
+import userController from './controllers/userController';
 dotenv.config();
 
 const port = process.env.PORT || 9000;
@@ -54,14 +53,10 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/api/v1/users/:userId/parcels', async (req, res) => {
-  const userId = Number.parseInt(req.params.userId, 10);
-  const userParcels = await database.getParcelsByUserId(userId);
-  res.status(200).json({ parcels: userParcels });
-});
+app.get('/api/v1/users/:userId/parcels', userController.getParcelsByUserId);
 
 
-// console.log(process.env.NAME);
+// console.log(process.env.PGDATABASE);
 
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`the app started on port ${port}`));
