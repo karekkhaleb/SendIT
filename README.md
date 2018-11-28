@@ -23,3 +23,45 @@
 * Make sure you are on the Develop branch (Because the Develop branch has all the recent code)
 * Navigate to `/UI/html` folder for that is where the static pages are located
 * There you may open any html file with your browser and see the template working!!
+
+## Running the tests locally 
+* clone the repo or downoald the zip file(extract the zip and navigate to the folder containing the app)
+* Install dependecies with `npm install` (You can also use yarn) from the terminal
+* Run tests with `npm test` (also yarn may work)
+
+
+## Information on the API
+
+
+```json
+{
+  "gettingAllParcels": {
+    "url": "/api/v1/parcels",
+    "method": "GET"
+  },
+  "gettingASingleParcelById": {
+    "url": "/api/v1/parcels/<parcelId>",
+    "method": "GET"
+  },
+  "gettingParcelsByUserId": {
+    "url": "/api/v1/users/<userId>/parcels",
+    "method": "GET"
+  },
+  "creatingAParcel": {
+    "url": "/api/v1/parcels",
+    "method": "POST",
+    "objectFormat": {
+      "userId": "The id of the user creating the parcel",
+      "weight": "The weight of the parcel",
+      "pickupLocation": "The location where the parcel should be picked up",
+      "destination": "The parcel's destination",
+      "description": "Some info about the parcel"
+    }
+  },
+  "cancelParcel": {
+    "url": "/api/v1/parcels/<parcelId>/cancel",
+    "method": "PUT"
+  }
+}
+
+```
