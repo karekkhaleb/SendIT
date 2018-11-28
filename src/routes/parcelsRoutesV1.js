@@ -6,8 +6,12 @@ import database from '../db/conn';
 
 const Router = express.Router();
 
-Router.get('/', (req, res) => {
-  res.json(ParcelsCollection.Parcels);
+Router.get('/', async (req, res) => {
+  const parcels = await database.getAllParcels();
+  if (!parcels) {
+    return res.status(500).json({ message: 'sorry something went wrong' });
+  }
+  res.status(200).json({ parcels });
 });
 
 Router.post('/', (req, res) => {
