@@ -115,8 +115,23 @@ const updateParcel = async (parcelId, { ...payload }) => {
   }
 };
 
+const getParcelsByUserId = async (userId) => {
+  const query = 'select * from parcels where user_id = $1';
+  const connection = await connect();
+  try {
+    const result = await connection.query(query, [userId]);
+    return result.rows;
+  } catch (error) {
+    console.log(error);
+    return null;
+  } finally {
+    connection.release();
+  }
+};
+
 export default {
   signup,
   signin,
   updateParcel,
+  getParcelsByUserId,
 };

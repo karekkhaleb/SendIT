@@ -3,7 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import parcelsRoutesV1 from './routes/parcelsRoutesV1';
 import authRoutes from './routes/authRoutes';
-import ParcelsCollection from './classes/parcelsDataStructure';
+import database from './db/conn';
 
 dotenv.config();
 
@@ -54,10 +54,10 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/api/v1/users/:userId/parcels', (req, res) => {
+app.get('/api/v1/users/:userId/parcels', async (req, res) => {
   const userId = Number.parseInt(req.params.userId, 10);
-  const userParcels = ParcelsCollection.getParcelsByUserId(userId);
-  res.status(200).json(userParcels);
+  const userParcels = await database.getParcelsByUserId(userId);
+  res.status(200).json({ parcels: userParcels });
 });
 
 
