@@ -1,10 +1,47 @@
 import { Pool } from 'pg';
 import bcrypt from 'bcrypt-nodejs';
 import jwt from 'jsonwebtoken';
+import jwtUtil from '../jwt/jwtUtil';
 
-const jwtSecretWord = 'ryiewoer';
-const pool = new Pool();
+
+let pool;
+
+if (process.env.DATABASE_URL) {
+  const connectionString = process.env.DATABASE_URL;
+  pool = new Pool({
+    connectionString,
+  });
+} else pool = new Pool();
 const connect = async () => pool.connect();
+
+
+const generateTables = async () => {
+  const userTableQuery = `create table if not exists users
+    (
+        id SERIAL primary key,
+        user_email varchar NOT NULL,
+        user_password varchar NOT NULL,
+        user_role varchar NOT null default 'user' 
+    );`;
+  const parcelsTableQuery = `create table if not exists parcels
+    (
+        id SERIAL primary key,
+        user_id integer NOT NULL,
+        weight integer NOT NULL,
+        description varchar NOT NULL,
+        pickup_location varchar NOT NULL,
+        current_location varchar NOT NULL,
+        destination varchar NOT NULL,
+        price integer NOT NULL,
+        status varchar NOT NULL,
+        created_at timestamp without time zone DEFAULT now()
+    )`;
+  const connection = await connect();
+  await connection.query(userTableQuery);
+  await connection.query(parcelsTableQuery);
+};
+
+generateTables();
 
 const signup = async (authData) => {
   const query = `
@@ -21,15 +58,13 @@ const signup = async (authData) => {
   const connection = await connect();
   try {
     const newUser = await connection.query(query, params);
-    console.log(newUser);
     return {
       token: jwt.sign({
         exp: Math.floor(Date.now() / 1000) + (60 * 60),
         data: newUser.rows[0],
-      }, jwtSecretWord),
+      }, jwtUtil.jwtSecretWord),
     };
   } catch (e) {
-    console.log(e);
     return null;
   } finally {
     connection.release();
@@ -57,7 +92,7 @@ const signin = async (authData) => {
             token: jwt.sign({
               exp: Math.floor(Date.now() / 1000) + (60 * 60),
               data: user,
-            }, jwtSecretWord),
+            }, jwtUtil.jwtSecretWord),
           };
           break;
         }
@@ -67,7 +102,6 @@ const signin = async (authData) => {
     return null;
     // return { message: 'No such a user!' };
   } catch (e) {
-    console.log(e);
     return null;
   } finally {
     connection.release();
@@ -115,7 +149,6 @@ const updateParcel = async (parcelId, { ...payload }) => {
     const updatedParcel = await connection.query(query, updateParams);
     return updatedParcel.rows;
   } catch (error) {
-    console.log(error);
     return null;
   } finally {
     connection.release();
@@ -129,7 +162,6 @@ const getParcelsByUserId = async (userId) => {
     const result = await connection.query(query, [userId]);
     return result.rows;
   } catch (error) {
-    console.log(error);
     return null;
   } finally {
     connection.release();
@@ -143,7 +175,6 @@ const getAllParcels = async () => {
     const result = await connection.query(query);
     return result.rows;
   } catch (error) {
-    console.log(error);
     return null;
   } finally {
     connection.release();
@@ -173,7 +204,6 @@ const createParcel = async (parcel) => {
     const result = await connection.query(query, params);
     return result.rows;
   } catch (error) {
-    console.log(error);
     return null;
   } finally {
     connection.release();
@@ -191,7 +221,6 @@ const getParcelById = async (parcelId) => {
     }
     return null;
   } catch (error) {
-    console.log(error);
     return null;
   } finally {
     connection.release();
