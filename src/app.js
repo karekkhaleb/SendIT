@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import parcelsRoutesV1 from './routes/parcelsRoutesV1';
 import authRoutes from './routes/authRoutes';
 import userController from './controllers/userController';
+// import '@babel/polyfill';
 
 dotenv.config();
 

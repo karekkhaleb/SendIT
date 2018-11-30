@@ -39,10 +39,12 @@ const objectsForTesting = [
 const urlRootEndPoint = 'http://localhost:9000/api/v1';
 const urlParcels = `${urlRootEndPoint}/parcels`;
 const urlUserParcels = `${urlRootEndPoint}/users`;
+const urlAuth = `${urlRootEndPoint}/auth`;
 
 export default objectsForTesting;
 export {
   urlRootEndPoint,
   urlParcels,
   urlUserParcels,
+  urlAuth,
 };

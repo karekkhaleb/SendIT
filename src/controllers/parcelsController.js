@@ -87,7 +87,7 @@ class ParcelController {
   };
 
   cancelParcel = async (req, res) => {
-    jwt.verify(req.token, jwtUtil.jwtSecretWord, (err, data) => {
+    jwt.verify(req.token, jwtUtil.jwtSecretWord, (err) => {
       if (err) {
         return res.status(403).json({ message: 'Unauthorized access' });
       }

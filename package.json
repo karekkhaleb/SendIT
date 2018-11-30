@@ -15,9 +15,10 @@
     "dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./src/app.js",
     "report": "nyc report",
     "coverage": "nyc report --reporter=text-lcov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "otest": "cross-env NODE_ENV=development babel-node ./node_modules/jasmine/bin/jasmine.js",
-    "ptest": "cross-env NODE_ENV=test nyc ./node_modules/.bin/jasmine-node spec",
-    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text ./node_modules/.bin/jasmine-node spec"
+    "otest": "cross-env NODE_ENV=test babel-node ./node_modules/jasmine/bin/jasmine.js",
+    "backuptest": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text ./node_modules/.bin/jasmine-node ./spec",
+    "ptest": "cross-env NODE_ENV=test nyc ./node_modules/jasmine/bin/jasmine.js",
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text ./node_modules/jasmine/bin/jasmine.js"
   },
   "repository": {
     "type": "git",
@@ -51,6 +52,7 @@
     "request": "^2.88.0"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "bcrypt-nodejs": "0.0.3",
     "cross-env": "^5.2.0",
     "dotenv": "^6.1.0",
