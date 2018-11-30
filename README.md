@@ -8,6 +8,11 @@
 
 > The api is hosted at https://glacial-headland-62518.herokuapp.com/
 
+
+# App Description
+> This app will provide parcel Devilery features to the clients
+> You pay based on the weight of your parcel
+
 ## Running the api Locally
 
 * clone the repo or download the zip
