@@ -4,7 +4,6 @@ import '@babel/polyfill';
 import server from '../../src/app';
 import {
   urlParcels,
-  urlAuth,
 } from './testUtils';
 
 /**
