@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt-nodejs';
 import jwt from 'jsonwebtoken';
 import jwtUtil from '../jwt/jwtUtil';
 
-
 let pool;
 
 if (process.env.DATABASE_URL) {
@@ -13,8 +12,6 @@ if (process.env.DATABASE_URL) {
   });
 } else pool = new Pool();
 const connect = async () => pool.connect();
-
-
 const generateTables = async () => {
   const userTableQuery = `create table if not exists users
     (
@@ -49,6 +46,34 @@ const signup = async (authData) => {
     (user_email, user_password) 
     values 
     ($1, $2) returning *;
+  `;
+  const hashedPassword = bcrypt.hashSync(authData.password);
+  const params = [
+    authData.email,
+    hashedPassword,
+  ];
+  const connection = await connect();
+  try {
+    const newUser = await connection.query(query, params);
+    return {
+      token: jwt.sign({
+        exp: Math.floor(Date.now() / 1000) + (60 * 60),
+        data: newUser.rows[0],
+      }, jwtUtil.jwtSecretWord),
+    };
+  } catch (e) {
+    return null;
+  } finally {
+    connection.release();
+  }
+};
+
+const adminSignup = async (authData) => {
+  const query = `
+    insert into users 
+    (user_email, user_password, user_role) 
+    values 
+    ($1, $2, 'admin') returning *;
   `;
   const hashedPassword = bcrypt.hashSync(authData.password);
   const params = [
@@ -120,7 +145,6 @@ const updateParcel = async (parcelId, { ...payload }) => {
       parcel = result.rows[0];
     } else return { message: 'no match' };
   } catch (error) {
-    console.log(error);
     return null;
   }
   if (parcel && (parcel.status === 'canceled' || parcel.status === 'delivered')) {
@@ -235,4 +259,5 @@ export default {
   getAllParcels,
   createParcel,
   getParcelById,
+  adminSignup,
 };
