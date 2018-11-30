@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/karekkhaleb/sendit.svg?branch=api-endpoint)](https://travis-ci.org/karekkhaleb/sendit)
 ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
 [![Coverage Status](https://coveralls.io/repos/github/karekkhaleb/sendit/badge.png?branch=Develop)](https://coveralls.io/github/karekkhaleb/sendit?branch=Develop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
 
 > The templates are hosted at https://karekkhaleb.github.io/sendit/UI/html
 
