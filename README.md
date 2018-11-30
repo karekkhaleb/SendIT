@@ -61,6 +61,16 @@
   "cancelParcel": {
     "url": "/api/v1/parcels/<parcelId>/cancel",
     "method": "PUT"
+  },
+  "changeParcelStatus": {
+    "url": "/api/v1/parcels/<parcelId>/status",
+    "method": "PUT",
+    "requirements": "you should be authenticated and use the token in the header"
+  },
+  "changeParcelDestination": {
+    "url": "/api/v1/parcels/<parcelId>/destination",
+    "method": "PUT",
+    "requirements": "you should be authenticated and use the token in the header"
   }
 }
 
