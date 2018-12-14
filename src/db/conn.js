@@ -31,11 +31,28 @@ const generateTables = async () => {
         destination varchar NOT NULL,
         price integer NOT NULL,
         status varchar NOT NULL,
-        created_at timestamp without time zone DEFAULT now()
+        created_at timestamp without time zone DEFAULT now(),
+        FOREIGN KEY (user_id) REFERENCES users(id)
     )`;
+  const createAdminQuery = `
+  insert into users
+  (
+    user_email,
+    user_password,
+    user_role
+  )
+  select
+    $1,
+    $2,
+    'admin'
+  where not exists (select * from users);
+  `;
   const connection = await connect();
   await connection.query(userTableQuery);
   await connection.query(parcelsTableQuery);
+  const adminEmail = process.env.ADMINEMAIL;
+  const adminPassword = bcrypt.hashSync(process.env.ADMINEMAIL);
+  await connection.query(createAdminQuery, [adminEmail, adminPassword]);
 };
 
 generateTables();

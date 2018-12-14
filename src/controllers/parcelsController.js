@@ -5,6 +5,10 @@ import jwtUtil from '../jwt/jwtUtil';
 
 class ParcelController {
   getAll = async (req, res) => {
+    const credentials = jwt.decode(req.token);
+    if (credentials.data.user_role !== 'admin') {
+      return res.status(403).json({ message: 'Just for admin' });
+    }
     const parcels = await database.getAllParcels();
     if (!parcels) {
       res.status(500).json({ message: 'sorry something went wrong' });
@@ -13,14 +17,13 @@ class ParcelController {
 
   createParcel = async (req, res) => {
     const { body } = req;
-    if (!body.userId) return res.status(400).json({ message: 'missing userId' });
     if (!body.pickupLocation) return res.status(400).json({ message: 'missing pickupLocation' });
     if (!body.destination) return res.status(400).json({ message: 'missing destination' });
     if (!body.weight) return res.status(400).json({ message: 'missing weight' });
     if (!body.description) return res.status(400).json({ message: 'missing description' });
 
     const newParcel = {
-      userId: Number.parseInt(req.body.userId, 10),
+      userId: jwt.decode(req.token).data.id,
       weight: Number.parseInt(req.body.weight, 10),
       pickupLocation: req.body.pickupLocation,
       destination: req.body.destination,

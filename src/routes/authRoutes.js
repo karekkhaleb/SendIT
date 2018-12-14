@@ -7,7 +7,7 @@ const Router = express.Router();
 
 Router.post('/signup', validations.signupValidation, authController.signup);
 
-Router.post('/signup/admin', validations.signupValidation, authController.adminSignup);
+// Router.post('/signup/admin', validations.signupValidation, authController.adminSignup);
 
 Router.post('/signin', authController.signin);
 
