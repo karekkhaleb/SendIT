@@ -5,7 +5,9 @@ module.exports = {
     "env": {
         es6: true,
         // node: true,
-        jasmine: true
+        jasmine: true,
+        browser: true,
+        node: true
     },
     // "extends": 'plugin:jasmine/recommended'
 };

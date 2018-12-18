@@ -16,7 +16,7 @@ const generateTables = async () => {
   const userTableQuery = `create table if not exists users
     (
         id SERIAL primary key,
-        user_email varchar NOT NULL,
+        user_email varchar NOT NULL UNIQUE,
         user_password varchar NOT NULL,
         user_role varchar NOT null default 'user' 
     );`;
@@ -85,34 +85,6 @@ const signup = async (authData) => {
   }
 };
 
-const adminSignup = async (authData) => {
-  const query = `
-    insert into users 
-    (user_email, user_password, user_role) 
-    values 
-    ($1, $2, 'admin') returning *;
-  `;
-  const hashedPassword = bcrypt.hashSync(authData.password);
-  const params = [
-    authData.email,
-    hashedPassword,
-  ];
-  const connection = await connect();
-  try {
-    const newUser = await connection.query(query, params);
-    return {
-      token: jwt.sign({
-        exp: Math.floor(Date.now() / 1000) + (60 * 60),
-        data: newUser.rows[0],
-      }, jwtUtil.jwtSecretWord),
-    };
-  } catch (e) {
-    return null;
-  } finally {
-    connection.release();
-  }
-};
-
 const signin = async (authData) => {
   const query = `
     select * from users 
@@ -142,7 +114,6 @@ const signin = async (authData) => {
       return token;
     }
     return null;
-    // return { message: 'No such a user!' };
   } catch (e) {
     return null;
   } finally {
@@ -276,5 +247,4 @@ export default {
   getAllParcels,
   createParcel,
   getParcelById,
-  adminSignup,
 };

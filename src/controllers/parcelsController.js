@@ -32,12 +32,12 @@ class ParcelController {
       currentLocation: req.body.pickupLocation,
       status: 'pending',
     };
-    const createdParccel = await database.createParcel(newParcel);
+    const createdParcel = await database.createParcel(newParcel);
 
-    if (createdParccel) {
+    if (createdParcel) {
       return res.status(201).json({
         message: 'Parcel created successfully',
-        parcel: createdParccel,
+        parcel: createdParcel,
       });
     }
     res.status(500).json({ message: 'an error occured' });

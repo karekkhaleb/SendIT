@@ -1,0 +1,76 @@
+@import './variables.scss';
+
+
+
+.nav-body{
+    background-color: rgb(134, 60, 10);
+    background-image: url('/img/10-12.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: $text-white;
+}
+
+.main{
+    background-color: rgba(128, 128, 128, 0.568);
+    width: 100%;
+    padding: 0 10%;
+    margin: 0 auto;
+    display: flex;
+    height: 100vh;
+    position: relative;
+    > * {
+        flex: 1;
+    }
+    .side-info{
+        // background-color: blue;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+#services{
+    min-height: 100px;
+    background-color: $b-gray;
+    text-align: $center;
+    h1{
+        color: $text-white;
+        padding-top: $padding;
+    }
+}
+.cards{
+    display: flex;
+
+    flex-wrap: wrap;
+    > div{
+        flex: 1;
+        // min-height: 250px;
+        background-color: white;
+        margin: $margin;
+        box-shadow: black 0 0 25px;
+        text-align: center;
+        border-radius: $radius;
+        padding: $padding;
+        p{
+            font-size: 1.5em;
+        }
+    }
+}
+.container{
+    margin: 0 15%;
+}
+
+#about-us{
+    min-height: 30vh;
+    text-align: $center;
+    margin: 0 $container-margin;
+    h1{
+        padding-top: $padding;
+    }
+    p{
+        font-size: 1.5em;
+    }
+}

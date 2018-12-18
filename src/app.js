@@ -13,7 +13,6 @@ const app = express();
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static('UI'));
 
 app.use('/api/v1/parcels/', parcelsRoutesV1);
 app.use('/api/v1/auth', authRoutes);
@@ -53,9 +52,27 @@ app.get('/', (req, res) => {
           status: 'the new status of the parcel(make sure it is either delivered or canceled)',
         },
       },
+      signup: {
+        url: '/api/v1/auth/signup',
+        method: 'post',
+        objectFormat: {
+          email: 'the email you want to signup with',
+          password: 'the password you want to signup with',
+        },
+      },
+      signin: {
+        url: '/api/v1/auth/signin',
+        method: 'post',
+        objectFormat: {
+          email: 'your email',
+          password: 'your password',
+        },
+      },
     },
   });
 });
+app.use(express.static('UI'));
+
 
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`the app started on port ${port}`));
