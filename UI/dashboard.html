@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/fontawesome/css/all.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="js/jwt/jwt.js"></script>
+    <title>Dashboard</title>
+</head>
+<body>
+<nav class="navigation">
+    <a href="index.html"><span>Home</span></a>
+    <ul>
+        <li><a href="login.html" class="logout">Logout</a></li>
+    </ul>
+</nav>
+<div class="admin-container">
+    <aside>
+        <div>
+            <span class="user-avatar">
+                <i class="fa fa-5x fa-user-circle"></i>
+            </span>
+        <h1>@Admin:</h1>
+        <h2>Karekkhaleb!</h2>
+            <hr>
+            <div class="padding">
+                <span class="fas fa-thermometer-full"> 5 parcels delivered</span>
+            </div>
+            <div class="padding">
+                <span class="fas fa-thermometer-half"> 5 parcels in process</span>
+            </div>
+            <div class="padding">
+                <span class="fas fa-thermometer-empty"> 5 parcels canceled</span>
+            </div>
+        </div>
+    </aside>
+    <main>
+        <h1>All the parcels</h1>
+        <table id="parcels-table">
+            <tr>
+                <th>Description</th>
+                <th>Weight</th>
+                <th>Pickup Location</th>
+                <th>Current Location</th>
+                <th>Destination</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            <!--<tr>-->
+                <!--<td>Tv set</td>-->
+                <!--<td>To be given to Mr CAleb</td>-->
+                <!--<td>Kigali</td>-->
+                <!--<td>Delivered</td>-->
+                <!--<td><i class="edit-order fas fa-edit"></i></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Tecno mobile</td>-->
+                <!--<td>This is flaud</td>-->
+                <!--<td>Mutara</td>-->
+                <!--<td>Canceled</td>-->
+                <!--<td><i class="edit-order fas fa-edit"></i></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Tecno mobile</td>-->
+                <!--<td>This is flaud</td>-->
+                <!--<td>Mutara</td>-->
+                <!--<td>Canceled</td>-->
+                <!--<td><i class="edit-order fas fa-edit"></i></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Tecno mobile</td>-->
+                <!--<td>This is flaud</td>-->
+                <!--<td>Mutara</td>-->
+                <!--<td>Canceled</td>-->
+                <!--<td><i class="edit-order fas fa-edit"></i></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Tecno mobile</td>-->
+                <!--<td>This is flaud</td>-->
+                <!--<td>Mutara</td>-->
+                <!--<td>Canceled</td>-->
+                <!--<td><i class="edit-order fas fa-edit"></i></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Tecno mobile</td>-->
+                <!--<td>This is flaud</td>-->
+                <!--<td>Mutara</td>-->
+                <!--<td>Canceled</td>-->
+                <!--<td><i class="edit-order fas fa-edit"></i></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Tecno mobile</td>-->
+                <!--<td>This is flaud</td>-->
+                <!--<td>Mutara</td>-->
+                <!--<td>Canceled</td>-->
+                <!--<td><i class="edit-order fas fa-edit"></i></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Tecno mobile</td>-->
+                <!--<td>This is flaud</td>-->
+                <!--<td>Mutara</td>-->
+                <!--<td>Canceled</td>-->
+                <!--<td><i class="edit-order fas fa-edit"></i></td>-->
+            <!--</tr>-->
+        </table>
+    </main>
+</div>
+<div class="edit-order-bg">
+    <div class="">
+        <h2 class="center margin padding ">Change your order Destination or Cancel it.</h2>
+        <div class="form">
+            <button id="close-edit-order-form-btn" class="btn red-bg pos-right">X</button>
+            <div class="tbox">
+                <input id="input" class="input-field" type="text" placeholder="Enter the Current Location">
+            </div>
+            <div>
+                <button class="btn margin action-btn">Confirm Location</button>
+                <button class="btn margin action-btn">Change status</button>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="b-gray center">
+    <h3>Send It &copy;2018</h3>
+</footer>
+<script src="js/fontawesome.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/logout.js"></script>
+</body>
+</html>

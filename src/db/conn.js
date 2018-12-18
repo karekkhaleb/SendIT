@@ -16,7 +16,7 @@ const generateTables = async () => {
   const userTableQuery = `create table if not exists users
     (
         id SERIAL primary key,
-        user_email varchar NOT NULL,
+        user_email varchar NOT NULL UNIQUE,
         user_password varchar NOT NULL,
         user_role varchar NOT null default 'user' 
     );`;
@@ -31,11 +31,28 @@ const generateTables = async () => {
         destination varchar NOT NULL,
         price integer NOT NULL,
         status varchar NOT NULL,
-        created_at timestamp without time zone DEFAULT now()
+        created_at timestamp without time zone DEFAULT now(),
+        FOREIGN KEY (user_id) REFERENCES users(id)
     )`;
+  const createAdminQuery = `
+  insert into users
+  (
+    user_email,
+    user_password,
+    user_role
+  )
+  select
+    $1,
+    $2,
+    'admin'
+  where not exists (select * from users);
+  `;
   const connection = await connect();
   await connection.query(userTableQuery);
   await connection.query(parcelsTableQuery);
+  const adminEmail = process.env.ADMINEMAIL;
+  const adminPassword = bcrypt.hashSync(process.env.ADMINEMAIL);
+  await connection.query(createAdminQuery, [adminEmail, adminPassword]);
 };
 
 generateTables();
@@ -46,34 +63,6 @@ const signup = async (authData) => {
     (user_email, user_password) 
     values 
     ($1, $2) returning *;
-  `;
-  const hashedPassword = bcrypt.hashSync(authData.password);
-  const params = [
-    authData.email,
-    hashedPassword,
-  ];
-  const connection = await connect();
-  try {
-    const newUser = await connection.query(query, params);
-    return {
-      token: jwt.sign({
-        exp: Math.floor(Date.now() / 1000) + (60 * 60),
-        data: newUser.rows[0],
-      }, jwtUtil.jwtSecretWord),
-    };
-  } catch (e) {
-    return null;
-  } finally {
-    connection.release();
-  }
-};
-
-const adminSignup = async (authData) => {
-  const query = `
-    insert into users 
-    (user_email, user_password, user_role) 
-    values 
-    ($1, $2, 'admin') returning *;
   `;
   const hashedPassword = bcrypt.hashSync(authData.password);
   const params = [
@@ -125,7 +114,6 @@ const signin = async (authData) => {
       return token;
     }
     return null;
-    // return { message: 'No such a user!' };
   } catch (e) {
     return null;
   } finally {
@@ -259,5 +247,4 @@ export default {
   getAllParcels,
   createParcel,
   getParcelById,
-  adminSignup,
 };

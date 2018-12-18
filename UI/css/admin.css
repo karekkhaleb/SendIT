@@ -1,28 +1,108 @@
-.orders-list{
-    height: 500px;
-    min-width: 50%;
-    overflow-y: scroll
-}
-.details-section{
-    margin:auto
-}
-.orders-list-container{
-    display:flex; 
-    padding:0
-}
-.edit-order-bg{
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: black;
-    color: #ffffff;
-    /*opacity: .9;*/
-}
-.edit-order-form{
-    position: absolute;
-    left: 35%;
-    top: 30%;
-}
+body {
+  background-color: #c96c57; }
+
+.admin-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  color: #fff; }
+  .admin-container main {
+    flex: 4;
+    min-height: 17px;
+    background-color: #ccc;
+    margin: 25px;
+    border-radius: 10px; }
+    .admin-container main table {
+      background-color: #333;
+      border-radius: 0 0 10px 10px;
+      padding-left: 17px;
+      padding-right: 17px;
+      width: 100%; }
+      .admin-container main table tr:nth-child(2n) {
+        background-color: #ccc;
+        color: #333; }
+      .admin-container main table td, .admin-container main table th {
+        border-bottom: #fff solid 1px;
+        padding: 5px;
+        text-align: center; }
+    .admin-container main h1 {
+      text-align: center;
+      text-shadow: 0 0 5px white;
+      color: #333;
+      margin-top: 27px;
+      margin-bottom: 27px; }
+  .admin-container aside {
+    flex: 1;
+    background-color: #333333;
+    min-height: 55vh;
+    max-height: 60vh;
+    border-radius: 10px;
+    margin: 25px;
+    text-align: center;
+    color: #fff; }
+
+.tbox {
+  width: 260px;
+  height: 20%;
+  background: #f1f1f1b3;
+  border-radius: 10px;
+  margin: 10px auto; }
+  .tbox input:focus {
+    outline: 0; }
+  .tbox input {
+    background: none;
+    border: none;
+    outline: none;
+    text-align: center;
+    width: 90%;
+    line-height: 37px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    color: #333333; }
+
+.user-avatar {
+  display: block;
+  margin: 17px; }
+
+.edit-order-bg {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  color: #ffffff; }
+  .edit-order-bg div.form {
+    background-color: #333;
+    box-shadow: 0 0 5px black;
+    padding: 50px;
+    position: relative;
+    text-align: center;
+    margin: 0 25%; }
+  .edit-order-bg h2 {
+    padding: 17px 0; }
+  .edit-order-bg .action-btn:hover {
+    background: #ccc;
+    color: #333; }
+  .edit-order-bg button {
+    cursor: pointer; }
+
+.red-bg {
+  background-color: red; }
+
+.pos-right {
+  position: absolute;
+  right: 0;
+  top: 0; }
+
+.edit-order {
+  cursor: pointer; }
+
+.edit-order-form {
+  position: absolute;
+  left: 35%;
+  top: 30%; }
+
+/*# sourceMappingURL=admin.css.map */

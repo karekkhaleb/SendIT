@@ -1,0 +1,60 @@
+.nav-body {
+  background-color: #863c0a;
+  background-image: url("/img/10-12.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff; }
+
+.main {
+  background-color: rgba(128, 128, 128, 0.568);
+  width: 100%;
+  padding: 0 10%;
+  margin: 0 auto;
+  display: flex;
+  height: 100vh;
+  position: relative; }
+  .main > * {
+    flex: 1; }
+  .main .side-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+
+#services {
+  min-height: 100px;
+  background-color: #333;
+  text-align: center; }
+  #services h1 {
+    color: #fff;
+    padding-top: 17px; }
+
+.cards {
+  display: flex;
+  flex-wrap: wrap; }
+  .cards > div {
+    flex: 1;
+    background-color: white;
+    margin: 17px;
+    box-shadow: black 0 0 25px;
+    text-align: center;
+    border-radius: 5px;
+    padding: 17px; }
+    .cards > div p {
+      font-size: 1.5em; }
+
+.container {
+  margin: 0 15%; }
+
+#about-us {
+  min-height: 30vh;
+  text-align: center;
+  margin: 0 10%; }
+  #about-us h1 {
+    padding-top: 17px; }
+  #about-us p {
+    font-size: 1.5em; }
+
+/*# sourceMappingURL=main.css.map */
